@@ -1,0 +1,394 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --pulse-color: #1863dc;
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    color: #0f172a;
+    background-color: #f1f5f9;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(24, 99, 220, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.1) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Text selection tint */
+::selection {
+    background: #1863dc;
+    color: #ffffff;
+}
+
+/* Focus outline */
+:focus-visible {
+    outline: 2px solid #1863dc;
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
+/* Reusable medical component styling */
+.card {
+    background-color: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(24, 99, 220, 0.04);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12), 0 8px 20px -4px rgba(24, 99, 220, 0.08);
+    transform: translateY(-2px);
+}
+
+.card-glass {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 20px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1863dc 0%, #1d4ed8 100%);
+    color: white;
+    box-shadow: 0 4px 14px rgba(24, 99, 220, 0.3);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 6px 20px rgba(24, 99, 220, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* Medical Hero Gradient */
+.medical-gradient {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0284c7 100%);
+}
+
+.medical-gradient-emerald {
+    background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #0d9488 100%);
+}
+
+/* Heartbeat / ECG pulse line */
+.pulse-line {
+    overflow: visible;
+}
+
+.pulse-line path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 240;
+    stroke-dashoffset: 240;
+    animation: drawLine 2.2s ease-out infinite;
+}
+
+@keyframes drawLine {
+    0% {
+        stroke-dashoffset: 240;
+    }
+
+    60% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: -240;
+    }
+}
+
+/* Live Pulse Ring */
+.live-beacon {
+    position: relative;
+    display: inline-flex;
+}
+
+.live-beacon::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.75;
+    animation: beaconPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes beaconPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+/* Hide scrollbar for clean horizontal scrolling */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Animated heartbeat scale */
+.animate-heartbeat {
+    animation: heartbeat 1.8s ease-in-out infinite;
+}
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.08); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.05); }
+}
+
+/* Glow pulse keyframes */
+.animate-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+@keyframes pulseGlow {
+    0% { opacity: 0.25; transform: scale(0.98); }
+    100% { opacity: 0.5; transform: scale(1.03); }
+}
+
+/* Shimmer animation for banners */
+.shimmer-badge {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s infinite;
+}
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Floating background ambient keyframes */
+.animate-float-slow {
+    animation: floatSlow 8s ease-in-out infinite alternate;
+}
+@keyframes floatSlow {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-14px) rotate(3deg); }
+}
+
+/* Multi-stage queue stepper line fill */
+.stepper-progress-fill {
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================
+   Dark mode overrides
+   Applied when <html> has class="dark" (toggled by ThemeContext)
+   ============================ */
+html.dark body {
+    background-color: #0b1329;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(24, 99, 220, 0.22) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.18) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.12) 0px, transparent 50%);
+    color: #f8fafc;
+}
+
+html.dark .card:not([class*="bg-gradient-"]):not([class*="bg-blue-"]):not([class*="bg-indigo-"]):not([class*="bg-sky-"]):not([class*="bg-emerald-"]):not([class*="bg-amber-"]) {
+    background-color: #131c33;
+    border-color: #243456;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.35);
+}
+
+html.dark .bg-white:not([class*="dark:bg-"]) {
+    background-color: #131c33;
+    border-color: #243456;
+}
+
+html.dark .card-glass {
+    background: rgba(19, 28, 51, 0.88);
+    border-color: rgba(36, 52, 86, 0.8);
+}
+
+html.dark .text-slate-900:not([class*="dark:text-"]),
+html.dark .text-slate-800:not([class*="dark:text-"]) {
+    color: #ffffff;
+}
+
+html.dark .text-slate-700:not([class*="dark:text-"]),
+html.dark .text-slate-600:not([class*="dark:text-"]) {
+    color: #cbd5e1;
+}
+
+html.dark .text-slate-500:not([class*="dark:text-"]),
+html.dark .text-slate-400:not([class*="dark:text-"]) {
+    color: #94a3b8;
+}
+
+html.dark .bg-slate-50:not([class*="dark:bg-"]),
+html.dark .bg-slate-100:not([class*="dark:bg-"]) {
+    background-color: #0b1329;
+    border-color: #243456;
+}
+
+html.dark .border-slate-100:not([class*="dark:border-"]),
+html.dark .border-slate-200:not([class*="dark:border-"]) {
+    border-color: #243456;
+}
+
+html.dark header {
+    background-color: rgba(11, 19, 41, 0.9);
+    border-color: #243456;
+}
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+    background-color: #0b1329;
+    color: #ffffff;
+    border-color: #334155;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+    color: #94a3b8;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+    background: #243456;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+    background: #3b507d;
+}
+
+html.dark ::selection {
+    background: #1863dc;
+    color: #ffffff;
+}
+
+/* Animated gradient background shift */
+.animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+}
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Float-up animation for decorative elements */
+.animate-float-up {
+    animation: floatUp 6s ease-in-out infinite alternate;
+}
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* Slide in from right for staggered card entry */
+.animate-slide-in-right {
+    animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes slideInRight {
+    0% { opacity: 0; transform: translateX(30px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Gentle bounce for CTA buttons */
+.animate-gentle-bounce {
+    animation: gentleBounce 2s ease-in-out infinite;
+}
+@keyframes gentleBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+/* Horizontal ticker scroll */
+.animate-ticker {
+    animation: tickerScroll 20s linear infinite;
+}
+@keyframes tickerScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Glowing border pulse for pending items */
+.glow-border-amber {
+    animation: glowAmber 2s ease-in-out infinite alternate;
+}
+@keyframes glowAmber {
+    0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.15); }
+    100% { box-shadow: 0 0 20px 4px rgba(245, 158, 11, 0.25); }
+}
+
+.glow-border-emerald {
+    animation: glowEmerald 2s ease-in-out infinite alternate;
+}
+@keyframes glowEmerald {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.15); }
+    100% { box-shadow: 0 0 20px 4px rgba(16, 185, 129, 0.25); }
+}
+
+/* Subtle scale-in for modals and overlays */
+.animate-scale-in {
+    animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes scaleIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Counter number animation */
+.animate-count-up {
+    animation: countPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes countPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
